@@ -1,0 +1,1 @@
+pyinstaller -n MyPowerWatch --onefile --icon=assets\icon.ico mypowerwatch.py 
