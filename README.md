@@ -1,6 +1,6 @@
 # MyPowerWatch
 
-![MyPowerWatch Screenshot](assets/MyPowerWatch_pd5jt7njTg.png)
+![MyPowerWatch Screenshot](assets/MyPowerWatch_VlXvNS6Cj1.png)
 
 A lightweight Windows power monitoring tool with terminal UI.
 
@@ -29,4 +29,5 @@ Keyboard shortcuts:
 
 - Developer: Will Zhou
 - Company: 汇视创影科技
+
 - First release: 2025-08-16
