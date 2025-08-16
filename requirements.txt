@@ -1,0 +1,5 @@
+psutil>=5.8.0
+WMI>=1.5.1
+textual>=0.1.18
+GPUtil>=1.4.0
+win10toast>=0.9
