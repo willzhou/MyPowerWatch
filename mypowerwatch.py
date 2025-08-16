@@ -97,6 +97,7 @@ class MyPowerWatch(App):
         self.start_time = time.time()
         self.last_update = time.time()
         self.max_history_points = 60
+        self.power_history = []
 
         # Windows 特定初始化
         if sys.platform == "win32":
@@ -526,13 +527,19 @@ class MyPowerWatch(App):
         self.update_charts()
     
     def update_charts(self):
-        """更新图表显示"""
-        # 确保有足够的数据
-        if not hasattr(self, 'power_history') or not self.power_history:
-            return
-        
+        """更新ASCII图表显示，填满后自动清空重新开始"""
         try:
-            # 只保留功耗趋势图
+            # 检查是否需要重置图表（达到最大数据点）
+            if len(self.power_history) >= self.max_history_points*.95:
+                self.power_history = []  # 清空历史数据重新开始
+                self.query_one("#power-chart", Static).update("")  # 清空图表显示
+                return
+            
+            # 只有有数据时才绘制图表
+            if not self.power_history:
+                return
+                
+            # 原始图表绘制逻辑保持不变
             max_power = max(self.power_history)
             chart_lines = []
             for i in range(10, 0, -1):
@@ -541,6 +548,7 @@ class MyPowerWatch(App):
                 chart_lines.append(line)
             chart = "\n".join(chart_lines)
             self.query_one("#power-chart", Static).update(chart)
+            
         except Exception as e:
             log.error(f"更新图表时出错: {e}")
     
