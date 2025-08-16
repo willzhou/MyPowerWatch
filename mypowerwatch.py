@@ -530,7 +530,7 @@ class MyPowerWatch(App):
         """更新ASCII图表显示，填满后自动清空重新开始"""
         try:
             # 检查是否需要重置图表（达到最大数据点）
-            if len(self.power_history) >= self.max_history_points*.95:
+            if len(self.power_history) >= self.max_history_points-2:
                 self.power_history = []  # 清空历史数据重新开始
                 self.query_one("#power-chart", Static).update("")  # 清空图表显示
                 return
